@@ -1,38 +1,66 @@
 <template>
 	<div>
-		<!-- 1 获取普通元素 2 获取列表 3 获取组件 父组件调用子组件属性和方法 子组件调用父组件属性和方法 -->
-		<!-- 获取普通元素 -->
-		<!-- <input type="text" class="form-control" ref="input"/> -->
-		<!-- 获取列表 -->
-		<!-- <ul class="list-group">
-			<li class="list-group-item" v-for="(item,index) in list" :key="index"
-			ref="list">
-				{{item}}
-			</li>
-		</ul> -->
+		<h3>一.声明式渲染</h3>
+		<h5>{{msg}}</h5>
+		<h5 v-bind:title="title">鼠标停留显示</h5>
+		<h5>{{title}}</h5>
+		<h5>{{title2}}</h5>
+		
+		<h3>二、条件与循环</h3>
+		<div v-if="seen">you  see me ！</div>
+		<button @click="clickSeen">click seen</button>
+		 <!-- v-for -->
+		<div>
+		  <ol>
+		    <li v-for="todo in todos">
+		      {{ todo.text }}
+		    </li>
+		  </ol>
+		</div>
+		<div>
+			<p>{{msg}}</p>
+			<button @click="reverseMsg">反转消息</button>
+		</div>
+		<!-- v-model 指令 -->
+		<div>
+			<p>{{msg}}</p>
+			<input type="text" name="" id="" v-model="msg">
+		</div>
 		
 		
-		<!-- 获取组件 -->
-		<!-- <demo-item ref="demoitem"></demo-item> -->
-		
-		<!-- $children -->
-	<!-- 	<h1>11</h1>
-		<demo-item></demo-item>
-		<demo-item></demo-item>
-		<demo-item></demo-item> -->
-		
-		<!-- $parent -->
-		<!-- <h1 class="text-center">{{header}}</h1>
-		<demo-item></demo-item> -->
-		<h2>
-			skssjfdslss
-		</h2>
 		
 	</div>
 </template>
 
 <script>
 	
+	export default {
+		data() {
+			return {
+				msg: "Hello Vue , Hello World !",
+				title: "亲，这是你鼠标停留显示的内容哦 --" + new Date() ,
+				title2: "亲，这是你鼠标停留显示的内容哦 --" + new Date().toLocaleString() ,
+				seen: false,
+				
+				todos: [
+				  { text: '学习 JavaScript' },
+				  { text: '学习 Vue' },
+				  { text: '整个牛项目' }
+				]
+			}
+		},
+		methods: {
+			clickSeen() {
+				this.seen = ! this.seen
+			},
+			reverseMsg() {
+				this.msg = this.msg.split('').reverse().join('')
+			}
+			
+		}
+		
+		
+	}
 </script>
 
 <style>
